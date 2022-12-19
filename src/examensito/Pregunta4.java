@@ -20,12 +20,19 @@ public class Pregunta4 {
        EntityManagerFactory emf = Persistence.createEntityManagerFactory("examensitoPU");
        EntityManager em = emf.createEntityManager();
         
-       
-            Query qry2 = em.createNamedQuery("Obra.queryyy", Obra.class);
+       try{
+           Query qry2 = em.createNamedQuery("Obra.queryyy", Obra.class);
             List<Obra> list = qry2.getResultList();
             for(Obra o: list){
                 System.out.println("Nom obra: " + o.getNom() + " from author: " + o.getAutor().getNom());
             }
+       }catch(Exception e){
+           System.out.println("ERROR DEL TRY");
+       }finally{
+           em.close();
+       }
+       
+            
        
        
      
